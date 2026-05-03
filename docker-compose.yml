@@ -37,6 +37,18 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - virtual-chat
+    networks:
+      - virtual-chat-network
 
 
 volumes:

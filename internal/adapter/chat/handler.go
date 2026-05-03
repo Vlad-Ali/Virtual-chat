@@ -98,7 +98,10 @@ func (h *Handler) ReceiveMsg(appCtx context.Context) http.HandlerFunc {
 						return
 					}
 
-					jsonData, jsonErr := json.Marshal(msg)
+					var response dto.Message
+					response.Msg = msg.Msg
+
+					jsonData, jsonErr := json.Marshal(response)
 					if jsonErr != nil {
 						h.logger.Error("error marshalling websocket message", "error", jsonErr)
 						conn.WriteControl(websocket.CloseMessage, websocket.FormatCloseMessage(websocket.CloseInternalServerErr, ""), time.Now().Add(h.config.WriteWait))
@@ -148,36 +151,4 @@ func (h *Handler) ReceiveMsg(appCtx context.Context) http.HandlerFunc {
 
 		h.logger.Info("websocket connection fully closed")
 	}
-}
-
-func handleMsg(ctx context.Context, inChan <-chan string, outChan chan<- *message.Message) <-chan error {
-	errChan := make(chan error)
-	go func() {
-		defer close(errChan)
-		for {
-			select {
-			case text, ok := <-inChan:
-				if !ok {
-					return
-				}
-
-				if text == "" {
-					errChan <- message.ErrMessageInvalidFormat
-					return
-				}
-
-				msg := &message.Message{Msg: "Friend: " + text}
-
-				select {
-				case outChan <- msg:
-				case <-ctx.Done():
-					return
-				}
-			case <-ctx.Done():
-				return
-			}
-		}
-	}()
-
-	return errChan
 }
