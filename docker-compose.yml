@@ -1,0 +1,46 @@
+services:
+  virtual-chat:
+    image: virtual-chat:1.0.0
+    container_name: virtual-chat
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      HTTP_ADDRESS: ${HTTP_ADDRESS}
+      OLLAMA_URL: ${OLLAMA_URL}
+      OLLAMA_MODEL_NAME: ${OLLAMA_MODEL_NAME}
+      FRONTEND_URL: ${FRONTEND_URL}
+    volumes:
+      - ./config.yml:/app/config.yml
+    depends_on:
+      - ollama
+    networks:
+      - virtual-chat-network
+    command: [ "./app" ]
+    logging:
+      driver: "local"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  ollama:
+    image: ollama/ollama:0.6.8
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - virtual-chat-network
+    logging:
+      driver: "local"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+
+volumes:
+  ollama-data:
+
+networks:
+  virtual-chat-network:
