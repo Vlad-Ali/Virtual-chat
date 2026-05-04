@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>🤖 Virtual Chat</title>
+    <link rel="stylesheet" href="chat.css" />
+</head>
+<body>
+<div class="app">
+    <header class="chat-header">
+        <div class="header-left">
+            <span class="status-dot" id="status-dot"></span>
+            <h1>Virtual Chat</h1>
+        </div>
+        <button id="new-chat-btn" class="icon-btn" title="New chat">🔄</button>
+    </header>
+
+    <main class="chat-container" id="chat-container">
+        <div class="welcome-message">
+            <h2>👋 Hello!</h2>
+            <p>I'm your virtual conversation partner. Type a message and I'll respond.</p>
+            <p class="hint">💡 Tip: I might message you first if you stay silent for 30 seconds</p>
+        </div>
+        <div id="messages" class="messages"></div>
+        <div id="typing-indicator" class="typing-indicator hidden">
+            <span></span><span></span><span></span>
+        </div>
+    </main>
+
+    <form class="input-form" id="input-form">
+        <input
+                type="text"
+                id="message-input"
+                placeholder="Type a message..."
+                autocomplete="off"
+                autofocus
+        />
+        <button type="submit" id="send-btn" class="send-btn">➤</button>
+    </form>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

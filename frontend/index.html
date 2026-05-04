@@ -3,43 +3,57 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>🤖 Virtual Chat</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Virtual Chat - Project Info</title>
+    <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-<div class="app">
+<div class="app description-page">
     <header class="chat-header">
-        <div class="header-left">
-            <span class="status-dot" id="status-dot"></span>
-            <h1>Virtual Chat</h1>
-        </div>
-        <button id="new-chat-btn" class="icon-btn" title="New chat">🔄</button>
+        <h1>🤖 Virtual Chat</h1>
+        <a href="chat.html" class="icon-btn" title="Open Chat">💬</a>
     </header>
 
-    <main class="chat-container" id="chat-container">
-        <div class="welcome-message">
-            <h2>👋 Hello!</h2>
-            <p>I'm your virtual conversation partner. Type a message and I'll respond.</p>
-            <p class="hint">💡 Tip: I might message you first if you stay silent for 30 seconds</p>
+    <main class="content">
+        <section class="hero">
+            <h2>Real-Time AI Conversational Interface</h2>
+            <p>An intelligent chat system with proactive messaging.</p>
+        </section>
+
+        <div class="grid">
+            <div class="card">
+                <h3>🛠 Tech Stack</h3>
+                <ul>
+                    <li><strong>Backend:</strong> Go 1.25+ (Gorilla WebSocket)</li>
+                    <li><strong>Frontend:</strong> Vanilla JavaScript & CSS</li>
+                    <li><strong>AI/ML:</strong> Ollama </li>
+                    <li><strong>Web Server:</strong> Nginx (Reverse Proxy)</li>
+                    <li><strong>Containerization:</strong> Docker & Docker Compose</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>🌐 API Endpoints</h3>
+                <ul>
+                    <li><code>GET /</code> - Project description page</li>
+                    <li><code>GET /chat.html</code> - Interactive chat interface</li>
+                    <li><code>WS /api/chat</code> - WebSocket for real-time messaging</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>✨ Key Features</h3>
+                <ul>
+                    <li>Real-time bidirectional communication</li>
+                    <li>Proactive messaging (30s idle timeout)</li>
+                    <li>Context-aware conversation history</li>
+                </ul>
+            </div>
         </div>
-        <div id="messages" class="messages"></div>
-        <div id="typing-indicator" class="typing-indicator hidden">
-            <span></span><span></span><span></span>
-        </div>
+
+        <section class="footer">
+            <p class="hint">Open the chat to start a conversation with the assistant</p>
+        </section>
     </main>
-
-    <form class="input-form" id="input-form">
-        <input
-                type="text"
-                id="message-input"
-                placeholder="Type a message..."
-                autocomplete="off"
-                autofocus
-        />
-        <button type="submit" id="send-btn" class="send-btn">➤</button>
-    </form>
 </div>
-
-<script src="app.js"></script>
 </body>
 </html>
