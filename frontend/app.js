@@ -152,7 +152,7 @@ function escapeHtml(text) {
 
 function sendMessage() {
     const text = messageInput.value.trim();
-    if (!text || !ws || ws.readyState !== WebSocket.OPEN || isWaitingForResponse) {
+    if (!text || !ws || ws.readyState !== WebSocket.OPEN) {
         return;
     }
 
