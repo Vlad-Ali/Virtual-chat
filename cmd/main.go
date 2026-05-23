@@ -9,11 +9,11 @@ import (
 func main() {
 	application, err := app.NewApp()
 	if err != nil {
-		slog.Error("Error creating application", err)
+		slog.Error("Error creating application", "error", err)
 	}
 
 	err = application.Run()
 	if err != nil {
-		slog.Error("Error running application", err)
+		slog.Error("Error running application", "error", err)
 	}
 }

@@ -1,6 +1,6 @@
 services:
   virtual-chat:
-    image: vladali/virtual-chat:1.0.0
+    image: vladali/virtual-chat:1.1.0
     container_name: virtual-chat
     restart: unless-stopped
     ports:
